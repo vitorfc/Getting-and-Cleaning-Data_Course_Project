@@ -1,13 +1,13 @@
-# Getting and cleaning data
+# Getting and cleaning data Course
 
 For creating a tidy data set of wearable computing data originally from http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
 
-## Files in this repo
-* README.md -- you are reading it right now
-* CodeBook.md -- codebook describing variables, the data and transformations
-* run_analysis.R -- actual R code
+## Files in this repository
+* README.md
+* CodeBook.md -> codebook describing the variables, the data and transformations
+* run_analysis.R -> the R code
 
-## run_analysis.R goals
+## What is the run_analysis.R
 You should create one R script called run_analysis.R that does the following:
 1. Merges the training and the test sets to create one data set.
 2. Extracts only the measurements on the mean and standard deviation for each measurement. 
@@ -15,38 +15,34 @@ You should create one R script called run_analysis.R that does the following:
 4. Appropriately labels the data set with descriptive activity names. 
 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
 
-It should run in a folder of the Samsung data (the zip had this folder: UCI HAR Dataset)
-The script assumes it has in it's working directory the following files and folders:
+It should run in a folder of the Samsung data, this folder contains the subfolder UCI HAR Dataset
 * activity_labels.txt
 * features.txt
 * test/
 * train/
 
-The output is created in working directory with the name of tidy2.txt
+The output file will be created on working directory : of tidy_base.txt
 
-*Note:* the R script is built to run without including any libraries for the purpose of this course.
-
-## run_analysis.R walkthrough
-It follows the goals step by step.
 
 * Step 1:
-  * Read all the test and training files: y\_test.txt, subject\_test.txt and X_test.txt.
-  * Combine the files to a data frame in the form of subjects, labels, the rest of the data.
+  * reading all the data and put all in the data to use later
 
 * Step 2:
-  * Read the features from features.txt and filter it to only leave features that are either means ("mean()") or standard deviations ("std()"). The reason for leaving out meanFreq() is that the goal for this step is to only include means and standard deviations of measurements, of which meanFreq() is neither.
-  * A new data frame is then created that includes subjects, labels and the described features.
+  * Reading the feature base
+  * Keep only the features of mean and standard deviation
+  * Keep only the means and standard deviations inc by 2, data has subs and labels in the top
 
 * Step 3:
-  * Read the activity labels from activity_labels.txt and replace the numbers with the text.
+  * Get the labels of the activities
+  * Put the labeles in the data
 
 * Step 4:
-  * Make a column list (includig "subjects" and "label" at the start)
-  * Tidy-fy the list by removing all non-alphanumeric characters and converting the result to lowercase
-  * Apply the now-good-columnnames to the data frame
+  * Creating a list with the columna names and feat names
+  * Remove every invalid character and put in lowercase
+  * Using the list as column name
   
 * Step 5:
-  * Create a new data frame by finding the mean for each combination of subject and label. It's done by `aggregate()` function
+  * Get each mean combination 
   
 * Final step:
   * Write the new tidy set into a text file called tidy2.txt, formatted similarly to the original files.
